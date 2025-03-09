@@ -1,5 +1,22 @@
-/* src\App.css */
-
+/* App.css */
 .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.App-header {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 1rem;
   text-align: center;
+  font-weight: 700;
+}
+.App-content {
+  flex: 1;
+  padding: 2rem;
+}
+.App-footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 1rem;
 }
