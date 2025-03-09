@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { AppBar, Toolbar, Typography, Container, IconButton, Button } from '@mui/material'
 import { Box } from '@mui/system'
 import { useColorMode } from '../theme/ThemeConfig'
@@ -10,6 +9,12 @@ import YouTubeIcon from '@mui/icons-material/YouTube'
 import { styled } from '@mui/system'
 import { OverridableComponent } from '@mui/material/OverridableComponent'
 import { IconButtonTypeMap } from '@mui/material/IconButton/IconButton'
+
+interface HeaderProps {
+  activeSection: string
+  handleNavigation: (section: string) => void
+}
+
 
 const NavLink = styled(Button)(({ theme }) => ({
   margin: '0 1rem',
@@ -38,18 +43,9 @@ const SocialIcon = styled(IconButton)(({ theme }) => ({
   }
 })) as OverridableComponent<IconButtonTypeMap<{}, 'a'>>
 
-export default function Header() {
+export default function Header({ activeSection, handleNavigation }: HeaderProps) {
   const { mode, toggleColorMode } = useColorMode()
-  const [activeSection, setActiveSection] = useState('Events')
   const pages = ['Events', 'About', 'Media', 'Shop']
-
-  const handleNavigation = (page: string) => {
-    setActiveSection(page)
-    const section = document.getElementById(page.toLowerCase())
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
 
   return (
     <AppBar position="sticky" sx={{ 

@@ -16,7 +16,7 @@ const ScrollingWrapper = styled(Box)(({ theme }) => ({
   }
 }))
 
-export default function ShopSection() {
+export default function ShopSection({ id }: { id: string }) {
   const theme = useTheme()
   const dummyProducts = [
     { id: 1, name: 'Inspiring Book 1', price: '$25', description: 'A bestseller that changed the game.', image: '/images/shops/book1.png', link: '#', rating: 4.5 },
@@ -31,7 +31,7 @@ export default function ShopSection() {
   ]
   const repeatedProducts = [...dummyProducts, ...dummyProducts]
   return (
-    <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
+    <Box id={id} sx={{ p: 8, backgroundColor: 'background.paper' }}>
       <Typography variant="h2" align="center" gutterBottom sx={{ 
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         WebkitBackgroundClip: 'text',
@@ -42,9 +42,9 @@ export default function ShopSection() {
       </Typography>
       <Box sx={{ overflow: 'hidden', width: '100%', position: 'relative', px: 4 }}>
         <ScrollingWrapper sx={{ width: '200%' }}>
-          {repeatedProducts.map((product) => (
+          {repeatedProducts.map((product, index) => (
             <Box
-              key={product.id}
+              key={`${product.id}-${index}`}
               sx={{
                 display: 'inline-block',
                 width: { xs: '280px', sm: '320px', md: '360px' },

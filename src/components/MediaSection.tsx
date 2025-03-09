@@ -20,9 +20,9 @@ const ScrollingWrapper = styled(Box)({
   animation: `${scrollAnimation} 30s linear infinite`
 })
 
-export default function MediaSection() {
+export default function MediaSection({ id }: { id: string }) {
   return (
-    <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
+    <Box id={id} sx={{ p: 8, backgroundColor: 'background.paper' }}>
       <Typography variant="h2" align="center" gutterBottom>
         Media
       </Typography>

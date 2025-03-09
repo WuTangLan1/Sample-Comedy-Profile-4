@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Box, Typography, Button, Card, CardContent, CardActions, Grid, useTheme } from '@mui/material'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function EventsSection() {
+export default function EventsSection({ id }: { id: string }) {
   const theme = useTheme()
   const sampleNames = [
     "Laugh Riot Live",
@@ -66,15 +66,15 @@ export default function EventsSection() {
     }
   }
   return (
-    <Box sx={{ p: 8, backgroundColor: 'background.paper' }}>
-<Typography 
-  variant="h2" 
-  align="center" 
-  gutterBottom 
-  sx={{ color: theme.palette.mode === 'light' ? 'black' : 'inherit' }}
->
-  Upcoming Events
-</Typography>
+    <Box id={id} sx={{ p: 8, backgroundColor: 'background.paper' }}>
+    <Typography 
+      variant="h2" 
+      align="center" 
+      gutterBottom 
+      sx={{ color: theme.palette.mode === 'light' ? 'black' : 'inherit' }}
+    >
+      Upcoming Events
+    </Typography>
 
       <motion.div variants={containerVariants} initial="hidden" animate="visible">
         <Grid container spacing={4} justifyContent="center">
