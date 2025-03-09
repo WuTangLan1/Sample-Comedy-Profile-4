@@ -16,7 +16,32 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
   const handleNavigation = (section: string) => {
     setActiveSection(section)
     const element = document.getElementById(section.toLowerCase())
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (element) {
+      const startY = window.scrollY
+      const targetY = element.offsetTop
+      const distance = targetY - startY
+      const duration = Math.min(1000, Math.abs(distance * 0.5))
+  
+      const startTime = performance.now()
+      
+      const ease = (t: number) => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+      }
+  
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        const easedProgress = ease(progress)
+        
+        window.scrollTo(0, startY + distance * easedProgress)
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate)
+        }
+      }
+  
+      requestAnimationFrame(animate)
+    }
   }
 
   const sectionVariants = {

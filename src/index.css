@@ -16,3 +16,21 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: auto;
+  scroll-timeline: --page-scroll block;
+}
+
+@supports (scroll-timeline: --page-scroll) {
+  @keyframes smooth-scroll {
+    to {
+      transform: translateY(calc(-100% + 100vh));
+    }
+  }
+  
+  .scroll-container {
+    animation: smooth-scroll auto linear;
+    animation-timeline: --page-scroll;
+  }
+}
