@@ -3,8 +3,8 @@ import React from 'react'
 import { Box, Typography, Card, CardContent, CardMedia, Button, Chip, useTheme, styled, keyframes } from '@mui/material'
 
 const scrollReverse = keyframes({
-  '0%': { transform: 'translateX(0)' },
-  '100%': { transform: 'translateX(50%)' }
+  '0%': { transform: 'translateX(-50%)' },
+  '100%': { transform: 'translateX(0)' }
 })
 
 const ScrollingWrapper = styled(Box)(({ theme }) => ({
