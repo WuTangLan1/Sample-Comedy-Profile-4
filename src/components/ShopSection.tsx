@@ -1,4 +1,3 @@
-// src/components/ShopSection.tsx
 import React from 'react'
 import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, CardActions, Chip } from '@mui/material'
 
@@ -14,34 +13,137 @@ export default function ShopSection() {
     { id: 8, name: 'Trendy Shirt 2', price: '$40', description: 'A stylish statement of comedy.', image: '/images/shops/shirt2.png', link: '#', rating: 4.7 },
     { id: 9, name: 'Trendy Shirt 3', price: '$38', description: 'Elevate your wardrobe with laughter.', image: '/images/shops/shirt3.png', link: '#', rating: 4.6 }
   ]
+
   return (
     <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
-      <Typography variant="h2" align="center" gutterBottom>
+      <Typography variant="h2" align="center" gutterBottom sx={{ 
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        textShadow: '0 4px 6px rgba(0,0,0,0.1)'
+      }}>
         Shop
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={4} justifyContent="center" sx={{ px: 4 }}>
         {dummyProducts.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={4}>
-            <Card elevation={3} sx={{ transition: 'transform 0.3s ease', '&:hover': { transform: 'scale(1.05)' } }}>
-              <CardMedia component="img" image={product.image} alt={product.name} sx={{ height: 200, objectFit: 'cover' }} />
-              <CardContent>
-                <Typography variant="h5" gutterBottom>
-                  {product.name}
-                </Typography>
-                <Chip label={`${product.rating} ★`} color="secondary" size="small" sx={{ mb: 1 }} />
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  {product.description}
-                </Typography>
-                <Typography variant="h6" color="primary">
-                  {product.price}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button variant="contained" color="primary" href={product.link} fullWidth sx={{ py: 1.5 }}>
-                  Buy Now
-                </Button>
-              </CardActions>
-            </Card>
+          <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+            <Box sx={{
+              perspective: '1000px',
+              position: 'relative',
+              '&:hover .card-3d': {
+                transform: 'translateZ(20px) rotateX(5deg) rotateY(5deg)',
+                '&::before': { opacity: 1 }
+              }
+            }}>
+              <Card className="card-3d" elevation={0} sx={{
+                position: 'relative',
+                transformStyle: 'preserve-3d',
+                transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
+                borderRadius: '24px',
+                overflow: 'visible',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  inset: -2,
+                  background: 'linear-gradient(45deg, #ff6b6b 0%, #ffd93d 50%, #6bff6b 100%)',
+                  borderRadius: '24px',
+                  zIndex: -1,
+                  opacity: 0,
+                  transition: 'opacity 0.5s',
+                  filter: 'blur(20px)'
+                },
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '50%',
+                  height: '100%',
+                  background: 'linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                  transform: 'skewX(-25deg)',
+                  transition: 'left 0.6s'
+                },
+                '&:hover::after': {
+                  left: '150%',
+                  transition: 'left 0.6s'
+                }
+              }}>
+                <Box sx={{
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: '24px',
+                  '&:hover img': { transform: 'scale(1.1)' }
+                }}>
+                  <CardMedia component="img" image={product.image} alt={product.name} sx={{
+                    height: 300,
+                    objectFit: 'cover',
+                    transition: 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)'
+                  }}/>
+                  <Chip label={`${product.rating} ★`} color="secondary" size="small" sx={{
+                    position: 'absolute',
+                    top: 16,
+                    right: 16,
+                    fontWeight: 'bold',
+                    backdropFilter: 'blur(4px)',
+                    backgroundColor: 'rgba(255,255,255,0.2)'
+                  }}/>
+                </Box>
+                <CardContent sx={{ 
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 100%)',
+                  position: 'relative',
+                  zIndex: 1
+                }}>
+                  <Typography variant="h5" gutterBottom sx={{ 
+                    fontWeight: 700,
+                    background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}>
+                    {product.name}
+                  </Typography>
+                  <Typography variant="body2" sx={{ 
+                    color: 'text.secondary',
+                    minHeight: '60px',
+                    mb: 2,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>
+                    {product.description}
+                  </Typography>
+                  <Box sx={{ 
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mt: 2
+                  }}>
+                    <Typography variant="h6" sx={{ 
+                      fontWeight: 800,
+                      background: 'linear-gradient(45deg, #FF6D00 30%, #FFAB00 90%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent'
+                    }}>
+                      {product.price}
+                    </Typography>
+                    <Button variant="contained" href={product.link} sx={{
+                      background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
+                      borderRadius: '50px',
+                      fontWeight: 'bold',
+                      textTransform: 'none',
+                      px: 3,
+                      boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                      '&:hover': {
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
+                      }
+                    }}>
+                      Buy Now
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
           </Grid>
         ))}
       </Grid>
