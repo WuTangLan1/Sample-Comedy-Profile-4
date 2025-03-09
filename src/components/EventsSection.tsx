@@ -1,3 +1,5 @@
+// src\components\EventsSection.tsx
+
 // src/components/EventsSection.tsx
 import React from 'react'
 import { Box, Typography, Button, Card, CardContent, CardActions, CardMedia, Grid, useTheme } from '@mui/material'
