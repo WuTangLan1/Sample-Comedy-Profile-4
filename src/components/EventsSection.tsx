@@ -1,16 +1,20 @@
-// src\components\EventsSection.tsx
-
 // src/components/EventsSection.tsx
 import React from 'react'
-import { Box, Typography, Button, Card, CardContent, CardActions, CardMedia, Grid, useTheme } from '@mui/material'
+import { Box, Typography, Button, Card, CardContent, CardActions, Grid, useTheme } from '@mui/material'
 import { motion } from 'framer-motion'
 
 export default function EventsSection() {
   const theme = useTheme()
-  const dummyEvents = [
-    { id: 1, title: 'Live at The Comedy Club', date: '2025-04-10', location: 'Main Street Comedy Hall', time: '8:00 PM', price: '$25', link: '#', description: 'A hilarious night of stand-up comedy featuring top acts' },
-    { id: 2, title: 'Stand Up Special Night', date: '2025-05-05', location: 'Downtown Arena', time: '9:30 PM', price: '$30', link: '#', description: 'A special set showcasing the comedian’s latest material' }
-  ]
+  const dummyEvents = Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    title: `Event Title ${i + 1}`,
+    date: `2025-0${((i % 12) + 1).toString().padStart(2, '0')}-15`,
+    location: `Location ${i + 1}`,
+    time: `${8 + (i % 5)}:00 PM`,
+    price: `$${25 + (i % 10) * 5}`,
+    link: '#',
+    description: `This is a brief description for event ${i + 1} with exciting details to engage the audience.`
+  }))
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -34,10 +38,9 @@ export default function EventsSection() {
       <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
         <Grid container spacing={4} justifyContent="center">
           {dummyEvents.map((event) => (
-            <Grid item key={event.id} xs={12} sm={6} md={4}>
+            <Grid item key={event.id} xs={12} sm={6} md={4} lg={3}>
               <motion.div variants={itemVariants}>
-                <Card elevation={3}>
-                  <CardMedia component="img" image="https://via.placeholder.com/400x250" alt={event.title} />
+                <Card elevation={4} sx={{ borderRadius: 2, transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.03)' } }}>
                   <CardContent>
                     <Typography variant="h5" sx={{ fontWeight: 700 }}>
                       {event.title}

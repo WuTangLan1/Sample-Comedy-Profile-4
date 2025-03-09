@@ -1,18 +1,18 @@
 // src/components/ShopSection.tsx
 import React from 'react'
-import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, CardActions } from '@mui/material'
+import { Box, Typography, Grid, Card, CardContent, CardMedia, Button, CardActions, Chip } from '@mui/material'
 
 export default function ShopSection() {
   const dummyProducts = [
-    { id: 1, name: 'Inspiring Book 1', price: '$25', description: 'A bestseller that changed the game.', image: '/images/shops/book1.png', link: '#' },
-    { id: 2, name: 'Inspiring Book 2', price: '$30', description: 'A masterpiece of comedy and wisdom.', image: '/images/shops/book2.png', link: '#' },
-    { id: 3, name: 'Inspiring Book 3', price: '$28', description: 'An essential read for comedy lovers.', image: '/images/shops/book3.png', link: '#' },
-    { id: 4, name: 'Classic Mug 1', price: '$15', description: 'Start your day with a smile.', image: '/images/shops/mugs1.png', link: '#' },
-    { id: 5, name: 'Classic Mug 2', price: '$18', description: 'Perfect for coffee and laughter.', image: '/images/shops/mugs2.png', link: '#' },
-    { id: 6, name: 'Classic Mug 3', price: '$16', description: 'A must-have for every comedian fan.', image: '/images/shops/mugs3.png', link: '#' },
-    { id: 7, name: 'Trendy Shirt 1', price: '$35', description: 'Wear your humor with pride.', image: '/images/shops/shirt1.png', link: '#' },
-    { id: 8, name: 'Trendy Shirt 2', price: '$40', description: 'A stylish statement of comedy.', image: '/images/shops/shirt2.png', link: '#' },
-    { id: 9, name: 'Trendy Shirt 3', price: '$38', description: 'Elevate your wardrobe with laughter.', image: '/images/shops/shirt3.png', link: '#' }
+    { id: 1, name: 'Inspiring Book 1', price: '$25', description: 'A bestseller that changed the game.', image: '/images/shops/book1.png', link: '#', rating: 4.5 },
+    { id: 2, name: 'Inspiring Book 2', price: '$30', description: 'A masterpiece of comedy and wisdom.', image: '/images/shops/book2.png', link: '#', rating: 4.7 },
+    { id: 3, name: 'Inspiring Book 3', price: '$28', description: 'An essential read for comedy lovers.', image: '/images/shops/book3.png', link: '#', rating: 4.6 },
+    { id: 4, name: 'Classic Mug 1', price: '$15', description: 'Start your day with a smile.', image: '/images/shops/mugs1.png', link: '#', rating: 4.3 },
+    { id: 5, name: 'Classic Mug 2', price: '$18', description: 'Perfect for coffee and laughter.', image: '/images/shops/mugs2.png', link: '#', rating: 4.4 },
+    { id: 6, name: 'Classic Mug 3', price: '$16', description: 'A must-have for every comedian fan.', image: '/images/shops/mugs3.png', link: '#', rating: 4.2 },
+    { id: 7, name: 'Trendy Shirt 1', price: '$35', description: 'Wear your humor with pride.', image: '/images/shops/shirt1.png', link: '#', rating: 4.8 },
+    { id: 8, name: 'Trendy Shirt 2', price: '$40', description: 'A stylish statement of comedy.', image: '/images/shops/shirt2.png', link: '#', rating: 4.7 },
+    { id: 9, name: 'Trendy Shirt 3', price: '$38', description: 'Elevate your wardrobe with laughter.', image: '/images/shops/shirt3.png', link: '#', rating: 4.6 }
   ]
   return (
     <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
@@ -28,6 +28,7 @@ export default function ShopSection() {
                 <Typography variant="h5" gutterBottom>
                   {product.name}
                 </Typography>
+                <Chip label={`${product.rating} ★`} color="secondary" size="small" sx={{ mb: 1 }} />
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   {product.description}
                 </Typography>
