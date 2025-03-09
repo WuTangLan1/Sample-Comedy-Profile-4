@@ -51,33 +51,16 @@ export default function ShopSection() {
                   opacity: 0,
                   transition: 'opacity 0.5s',
                   filter: 'blur(20px)'
-                },
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: '-100%',
-                  width: '50%',
-                  height: '100%',
-                  background: 'linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
-                  transform: 'skewX(-25deg)',
-                  transition: 'left 0.6s'
-                },
-                '&:hover::after': {
-                  left: '150%',
-                  transition: 'left 0.6s'
                 }
               }}>
                 <Box sx={{
                   position: 'relative',
                   overflow: 'hidden',
-                  borderRadius: '24px',
-                  '&:hover img': { transform: 'scale(1.1)' }
+                  borderRadius: '24px'
                 }}>
                   <CardMedia component="img" image={product.image} alt={product.name} sx={{
                     height: 300,
-                    objectFit: 'cover',
-                    transition: 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)'
+                    objectFit: 'cover'
                   }}/>
                   <Chip label={`${product.rating} ★`} color="secondary" size="small" sx={{
                     position: 'absolute',
@@ -134,7 +117,6 @@ export default function ShopSection() {
                       px: 3,
                       boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                       '&:hover': {
-                        transform: 'translateY(-2px)',
                         boxShadow: '0 6px 8px rgba(0,0,0,0.2)'
                       }
                     }}>
