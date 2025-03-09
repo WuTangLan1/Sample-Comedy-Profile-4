@@ -1,7 +1,7 @@
 // src/components/EventsSection.tsx
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Typography, Button, Card, CardContent, CardActions, Grid, useTheme } from '@mui/material'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function EventsSection() {
   const theme = useTheme()
@@ -14,31 +14,37 @@ export default function EventsSection() {
     link: '#',
     description: `This is a brief description for event ${i + 1} with exciting details to engage the audience.`
   }))
+  const [visibleCount, setVisibleCount] = useState(4)
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
+      transition: { delayChildren: 0.3, staggerChildren: 0.2 }
     }
   }
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 50, transition: { duration: 0.3 } }
+  }
+  const handleToggle = () => {
+    if (visibleCount < dummyEvents.length) {
+      setVisibleCount(dummyEvents.length)
+    } else {
+      setVisibleCount(4)
+    }
   }
   return (
     <Box sx={{ p: 8, backgroundColor: 'background.paper' }}>
       <Typography variant="h2" align="center" gutterBottom>
         Upcoming Events
       </Typography>
-      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
+      <motion.div variants={containerVariants} initial="hidden" animate="visible">
         <Grid container spacing={4} justifyContent="center">
-          {dummyEvents.map((event) => (
-            <Grid item key={event.id} xs={12} sm={6} md={4} lg={3}>
-              <motion.div variants={itemVariants}>
+          <AnimatePresence>
+            {dummyEvents.slice(0, visibleCount).map((event) => (
+              <Grid item key={event.id} xs={12} sm={6} md={4} lg={3} component={motion.div} variants={itemVariants} initial="hidden" animate="visible" exit="exit">
                 <Card elevation={4} sx={{ borderRadius: 2, transition: 'transform 0.3s, background-image 0.3s ease', '&:hover': { transform: 'scale(1.03)' }, backgroundImage: theme.palette.mode === 'light' ? 'url(/images/backgrounds/eventsLight.svg)' : 'url(/images/backgrounds/eventsDark.svg)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
                   <CardContent>
                     <Typography variant="h5" sx={{ fontWeight: 700 }}>
@@ -63,11 +69,16 @@ export default function EventsSection() {
                     </Typography>
                   </CardActions>
                 </Card>
-              </motion.div>
-            </Grid>
-          ))}
+              </Grid>
+            ))}
+          </AnimatePresence>
         </Grid>
       </motion.div>
+      <Box sx={{ mt: 4, textAlign: 'center' }}>
+        <Button variant="outlined" color="secondary" onClick={handleToggle}>
+          {visibleCount < dummyEvents.length ? 'Show More' : 'Show Less'}
+        </Button>
+      </Box>
     </Box>
   )
 }
