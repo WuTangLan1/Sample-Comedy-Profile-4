@@ -1,6 +1,15 @@
 // src/theme/ThemeConfig.tsx
-import React, { ReactNode } from 'react'
+import React, { ReactNode, createContext, useState, useMemo, useContext } from 'react'
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
+
+const ColorModeContext = createContext({
+  mode: 'light',
+  toggleColorMode: () => {}
+})
+
+export function useColorMode() {
+  return useContext(ColorModeContext)
+}
 
 const lightTheme = createTheme({
   palette: {
@@ -58,9 +67,7 @@ const lightTheme = createTheme({
     body2: { fontSize: '0.875rem', fontWeight: 400 },
     button: { textTransform: 'none', fontWeight: 600 }
   },
-  shape: {
-    borderRadius: 12
-  },
+  shape: { borderRadius: 12 },
   spacing: 8,
   transitions: {
     duration: {
@@ -159,9 +166,7 @@ const darkTheme = createTheme({
     body2: { fontSize: '0.875rem', fontWeight: 400 },
     button: { textTransform: 'none', fontWeight: 600 }
   },
-  shape: {
-    borderRadius: 12
-  },
+  shape: { borderRadius: 12 },
   spacing: 8,
   transitions: {
     duration: {
@@ -204,16 +209,23 @@ const darkTheme = createTheme({
   }
 })
 
-type ThemeConfigProps = {
-  children: ReactNode
-}
+type ThemeConfigProps = { children: ReactNode }
 
 export default function ThemeConfig({ children }: ThemeConfigProps) {
-  const theme = lightTheme
+  const [mode, setMode] = useState<'light' | 'dark'>('light')
+  const colorMode = useMemo(() => ({
+    mode,
+    toggleColorMode: () => {
+      setMode((prev) => (prev === 'light' ? 'dark' : 'light'))
+    }
+  }), [mode])
+  const theme = mode === 'light' ? lightTheme : darkTheme
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   )
 }

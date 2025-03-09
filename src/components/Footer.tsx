@@ -1,16 +1,13 @@
-// src\components\Footer.tsx
-
+// src/components/Footer.tsx
 import React from 'react'
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ py: 3, px: 2, mt: 'auto', backgroundColor: 'primary.main', color: 'white' }}>
-      <Container maxWidth="xl">
-        <Typography variant="body1" align="center">
-          © 2025 Comedy Profile. All rights reserved.
-        </Typography>
-      </Container>
+    <Box sx={{ textAlign: 'center', py: 2 }}>
+      <Typography variant="body2">
+        © 2025 Comedy Profile
+      </Typography>
     </Box>
   )
 }

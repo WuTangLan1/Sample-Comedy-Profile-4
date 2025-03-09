@@ -1,5 +1,4 @@
-// src\components\Layout.tsx
-
+// src/components/Layout.tsx
 import React from 'react'
 import { Box } from '@mui/material'
 import Header from './Header'
