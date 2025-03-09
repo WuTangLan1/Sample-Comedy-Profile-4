@@ -1,29 +1,51 @@
-// src\components\MediaSection.tsx
-
+// src/components/MediaSection.tsx
 import React from 'react'
-import { Box, Typography, Grid, Card, CardMedia } from '@mui/material'
+import { Box, Typography, styled, keyframes } from '@mui/material'
+
+const images = [
+  { id: 1, src: '/images/personal/profile1.png', alt: 'Performance 1' },
+  { id: 2, src: '/images/personal/profile2.png', alt: 'Performance 2' },
+  { id: 3, src: '/images/personal/profile3.png', alt: 'Performance 3' },
+  { id: 4, src: '/images/personal/profile4.png', alt: 'Performance 4' },
+  { id: 5, src: '/images/personal/profile5.png', alt: 'Performance 5' }
+]
+const repeatedImages = [...images, ...images]
+const scrollAnimation = keyframes({
+  '0%': { transform: 'translateX(0)' },
+  '100%': { transform: 'translateX(-50%)' }
+})
+const ScrollingWrapper = styled(Box)({
+  display: 'flex',
+  whiteSpace: 'nowrap',
+  animation: `${scrollAnimation} 30s linear infinite`
+})
 
 export default function MediaSection() {
-  const dummyImages = [
-    { id: 1, src: 'https://via.placeholder.com/300x200', alt: 'Performance 1' },
-    { id: 2, src: 'https://via.placeholder.com/300x200', alt: 'Performance 2' },
-    { id: 3, src: 'https://via.placeholder.com/300x200', alt: 'Performance 3' },
-    { id: 4, src: 'https://via.placeholder.com/300x200', alt: 'Performance 4' }
-  ]
   return (
     <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
       <Typography variant="h2" align="center" gutterBottom>
         Media
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
-        {dummyImages.map((image) => (
-          <Grid item key={image.id} xs={12} sm={6} md={3}>
-            <Card elevation={3}>
-              <CardMedia component="img" image={image.src} alt={image.alt} />
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{ overflow: 'hidden', width: '100%', position: 'relative' }}>
+        <ScrollingWrapper sx={{ width: '200%' }}>
+          {repeatedImages.map((image) => (
+            <Box
+              key={image.id}
+              sx={{
+                display: 'inline-block',
+                width: { xs: '200px', sm: '250px', md: '300px' },
+                mx: 1
+              }}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </Box>
+          ))}
+        </ScrollingWrapper>
+      </Box>
     </Box>
   )
 }
