@@ -1,5 +1,5 @@
 // src/components/ShopSection.tsx
-import React from 'react'
+
 import { Box, Typography, Card, CardContent, CardMedia, Button, Chip, Grid, useTheme } from '@mui/material'
 
 export default function ShopSection({ id }: { id: string }) {
@@ -25,12 +25,12 @@ export default function ShopSection({ id }: { id: string }) {
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
             <Card sx={{
               height: '100%',
-              backgroundColor: theme.palette.mode === 'light' ? '#ffffff' : 'inherit',
-              boxShadow: theme.palette.mode === 'light' ? '0px 4px 20px rgba(0,0,0,0.1)' : 'inherit',
+              backgroundColor: theme.palette.mode === 'light' ? '#ffffff' : '#333333',
+              boxShadow: theme.palette.mode === 'light' ? '0px 4px 20px rgba(0,0,0,0.1)' : '0px 4px 20px rgba(0,0,0,0.5)',
               transition: 'all 0.3s ease-in-out',
               '&:hover': {
                 transform: 'translateY(-8px) scale(1.02)',
-                boxShadow: theme.palette.mode === 'light' ? '0 25px 50px -12px rgba(0,0,0,0.25)' : '0 25px 50px -12px rgba(255,255,255,0.15)'
+                boxShadow: theme.palette.mode === 'light' ? '0 25px 50px -12px rgba(0,0,0,0.25)' : '0 25px 50px -12px rgba(0,0,0,0.75)'
               }
             }}>
               <Box sx={{
@@ -87,9 +87,10 @@ export default function ShopSection({ id }: { id: string }) {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Typography variant="h6" sx={{
                     fontWeight: 800,
-                    background: 'linear-gradient(45deg, #FF6D00 30%, #FFAB00 90%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
+                    backgroundColor: theme.palette.mode === 'light' ? '#FF6D00' : '#FF8C00',
+                    color: '#ffffff',
+                    padding: '4px 8px',
+                    borderRadius: '4px'
                   }}>
                     {product.price}
                   </Typography>
