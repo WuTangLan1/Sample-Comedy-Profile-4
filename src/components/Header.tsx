@@ -59,9 +59,24 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2, fontWeight: 700, background: mode === 'light' ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)' : 'linear-gradient(45deg, #bb86fc 30%, #3700b3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-        Citizen Kane
-      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', my: 2 }}>
+        <img
+          src="/images/personal/profile1.png"
+          alt="logo"
+          style={{
+            width: 56,
+            height: 56,
+            marginRight: '1rem',
+            borderRadius: '50%',
+            border: `2px solid ${mode === 'light' ? '#1976d2' : '#bb86fc'}`
+          }}
+        />
+        <Typography variant="h6" sx={{ fontWeight: 700, background: mode === 'light'
+          ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)'
+          : 'linear-gradient(45deg, #bb86fc 30%, #3700b3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          Citizen Kane
+        </Typography>
+      </Box>
       <List>
         {pages.map((page) => (
           <ListItem key={page} disablePadding>
@@ -75,7 +90,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
   )
 
   return (
-    <AppBar position="sticky" sx={{ 
+    <AppBar position="sticky" sx={{
       backdropFilter: 'blur(10px)',
       backgroundColor: mode === 'light' ? 'rgba(255,255,255,0.8)' : 'rgba(18,18,18,0.8)',
       boxShadow: 'none'
@@ -92,7 +107,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               <MenuIcon sx={{ color: mode === 'light' ? 'black' : 'inherit' }} />
             </IconButton>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <SocialIcon 
+              <SocialIcon
                 component="a"
                 href="https://instagram.com"
                 target="_blank"
@@ -100,7 +115,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               >
                 <InstagramIcon sx={{ color: mode === 'light' ? '#E1306C' : '#ffffff' }} />
               </SocialIcon>
-              <SocialIcon 
+              <SocialIcon
                 component="a"
                 href="https://twitter.com"
                 target="_blank"
@@ -108,7 +123,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               >
                 <TwitterIcon sx={{ color: mode === 'light' ? '#1DA1F2' : '#ffffff' }} />
               </SocialIcon>
-              <SocialIcon 
+              <SocialIcon
                 component="a"
                 href="https://youtube.com"
                 target="_blank"
@@ -116,9 +131,9 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               >
                 <YouTubeIcon sx={{ color: mode === 'light' ? '#FF0000' : '#ffffff' }} />
               </SocialIcon>
-              <IconButton 
-                onClick={toggleColorMode} 
-                sx={{ 
+              <IconButton
+                onClick={toggleColorMode}
+                sx={{
                   marginLeft: '1.5rem',
                   backgroundColor: mode === 'light' ? 'rgba(25,118,210,0.1)' : 'rgba(187,134,252,0.1)',
                   '&:hover': {
@@ -139,18 +154,18 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               <img
                 src="/images/personal/profile1.png"
                 alt="logo"
-                style={{ 
-                  width: 56, 
-                  height: 56, 
-                  marginRight: '1.5rem', 
+                style={{
+                  width: 56,
+                  height: 56,
+                  marginRight: '1.5rem',
                   borderRadius: '50%',
                   border: `2px solid ${mode === 'light' ? '#1976d2' : '#bb86fc'}`
                 }}
               />
-              <Typography variant="h6" sx={{ 
+              <Typography variant="h6" sx={{
                 fontWeight: 700,
-                background: mode === 'light' 
-                  ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)' 
+                background: mode === 'light'
+                  ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)'
                   : 'linear-gradient(45deg, #bb86fc 30%, #3700b3 90%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
@@ -164,8 +179,8 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
                   key={page}
                   onClick={() => handleNavigation(page)}
                   sx={{
-                    color: activeSection === page 
-                      ? (mode === 'light' ? 'primary.main' : 'secondary.main') 
+                    color: activeSection === page
+                      ? (mode === 'light' ? 'primary.main' : 'secondary.main')
                       : 'text.primary',
                     fontWeight: activeSection === page ? 700 : 500
                   }}
@@ -175,7 +190,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               ))}
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <SocialIcon 
+              <SocialIcon
                 component="a"
                 href="https://instagram.com"
                 target="_blank"
@@ -183,7 +198,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               >
                 <InstagramIcon sx={{ color: mode === 'light' ? '#E1306C' : '#ffffff' }} />
               </SocialIcon>
-              <SocialIcon 
+              <SocialIcon
                 component="a"
                 href="https://twitter.com"
                 target="_blank"
@@ -191,7 +206,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               >
                 <TwitterIcon sx={{ color: mode === 'light' ? '#1DA1F2' : '#ffffff' }} />
               </SocialIcon>
-              <SocialIcon 
+              <SocialIcon
                 component="a"
                 href="https://youtube.com"
                 target="_blank"
@@ -199,9 +214,9 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               >
                 <YouTubeIcon sx={{ color: mode === 'light' ? '#FF0000' : '#ffffff' }} />
               </SocialIcon>
-              <IconButton 
-                onClick={toggleColorMode} 
-                sx={{ 
+              <IconButton
+                onClick={toggleColorMode}
+                sx={{
                   marginLeft: '1.5rem',
                   backgroundColor: mode === 'light' ? 'rgba(25,118,210,0.1)' : 'rgba(187,134,252,0.1)',
                   '&:hover': {
