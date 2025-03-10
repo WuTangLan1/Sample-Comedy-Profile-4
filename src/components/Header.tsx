@@ -71,9 +71,15 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
             border: `2px solid ${mode === 'light' ? '#1976d2' : '#bb86fc'}`
           }}
         />
-        <Typography variant="h6" sx={{ fontWeight: 700, background: mode === 'light'
-          ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)'
-          : 'linear-gradient(45deg, #bb86fc 30%, #3700b3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <Typography 
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            color: mode === 'light' ? 'black' : 'white',
+            fontFamily: '"Playfair Display", serif',
+            fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.8rem' }
+          }}
+        >
           Citizen Kane
         </Typography>
       </Box>
@@ -162,16 +168,17 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
                   border: `2px solid ${mode === 'light' ? '#1976d2' : '#bb86fc'}`
                 }}
               />
-              <Typography variant="h6" sx={{
-                fontWeight: 700,
-                background: mode === 'light'
-                  ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)'
-                  : 'linear-gradient(45deg, #bb86fc 30%, #3700b3 90%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                Citizen Kane
-              </Typography>
+                <Typography 
+                  variant="h6"
+                  sx={{
+                    fontWeight: 700,
+                    color: mode === 'light' ? 'black' : 'white',
+                    fontFamily: '"Playfair Display", serif',
+                    fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.8rem' }
+                  }}
+                >
+                  Citizen Kane
+                </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               {pages.map((page) => (
