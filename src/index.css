@@ -18,14 +18,6 @@ html {
   scroll-timeline: --page-scroll block;
 }
 
-body {
-  background-image: var(--app-background);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center var(--bg-offset, 0px);
-  transition: background-image 0.5s ease-in-out;
-}
-
 @supports (scroll-timeline: --page-scroll) {
   @keyframes smooth-scroll {
     to {
