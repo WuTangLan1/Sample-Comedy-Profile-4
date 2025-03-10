@@ -91,7 +91,7 @@ export default function EventsSection({ id }: { id: string }) {
     }
   }
   return (
-    <Box id={id} sx={{ p: 8, backgroundColor: 'transparent' }}>
+    <Box id={id} sx={{ p: { xs: 1, md: 8 } , backgroundColor: 'transparent' }}>
       <Typography 
         variant="h2" 
         align="center" 

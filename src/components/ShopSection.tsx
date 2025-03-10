@@ -16,7 +16,7 @@ export default function ShopSection({ id }: { id: string }) {
     { id: 9, name: 'Trendy Shirt: Humorous Vibes Crew', price: '$38', description: 'A stylish crewneck that combines fashion with humor. Soft, breathable material with a unique print that stands out. Perfect for casual outings.', image: '/images/shops/shirt3.png', link: '#', rating: 4.7 }
   ]
   return (
-    <Box id={id} sx={{ p: 8 }}>
+    <Box id={id} sx={{ px: { xs: 1, md: 8 }, py: { xs: 1, md: 8 } }}>
       <Typography
         variant="h2"
         align="center"

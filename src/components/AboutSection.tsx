@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 export default function AboutSection({ id }: { id: string }) {
   const theme = useTheme()
   return (
-    <Box id={id} sx={{ p: 8, width: '100%', backgroundColor: 'transparent' }}>
+    <Box id={id} sx={{ p: { xs: 1, md: 8 } , width: '100%', backgroundColor: 'transparent' }}>
       <Container maxWidth="xl">
         <Grid container spacing={6} alignItems="center" justifyContent="space-between">
           <Grid item xs={12} md={5}>
