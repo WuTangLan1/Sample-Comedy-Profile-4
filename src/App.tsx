@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.pageYOffset;
-      document.body.style.setProperty('--bg-offset', `${offset * 0.5}px`);
+      document.body.style.setProperty('--bg-offset', `${offset * 0.75}px`);
     }
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);

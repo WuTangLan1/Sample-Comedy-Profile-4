@@ -1,43 +1,68 @@
 // src/components/EventsSection.tsx
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Box, Typography, Button, Card, CardContent, CardActions, Grid, useTheme } from '@mui/material'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function EventsSection({ id }: { id: string }) {
   const theme = useTheme()
   const sampleNames = [
-    "Laugh Riot Live",
-    "Stand-Up Spectacular",
-    "Comedy Carnival",
-    "Giggles Galore",
-    "Hilarious Happenings",
-    "Funny Bone Fiesta",
-    "Joke Junction",
-    "Humor Haven",
-    "Comedy Central Night",
-    "Side-Splitting Soirée",
-    "Laugh Out Loud",
-    "Comic Relief Hour",
-    "Chuckle Fest",
-    "Mirth Marathon",
-    "Stand-Up Showdown",
-    "Jovial Jamboree",
-    "Giggle Gala",
-    "Comic Conclave",
-    "Humor Uprising",
-    "Laughter Lounge"
+    "The Laugh Factory Live",
+    "Comedy Under the Stars",
+    "Midnight Stand-Up",
+    "Jokes and Jams",
+    "Hilarious Headliners",
+    "The Giggle Gala",
+    "Stand-Up Soirée",
+    "Comic Relief Night",
+    "Laughter in the Park",
+    "Riotous Routines",
+    "Live from the Lounge",
+    "Saturday Night Shenanigans",
+    "Punchline Party",
+    "The Comedy Circuit",
+    "Laugh Out Loud Live",
+    "Night of Knockouts",
+    "Humor Unplugged",
+    "The Ultimate Comedy Jam",
+    "Stand-Up Extravaganza",
+    "The Grand Giggle Fest"
+  ]
+  const sampleLocations = [
+    "The Laugh Factory",
+    "Downtown Comedy Club",
+    "City Center Stage",
+    "The Open Mic",
+    "The Comedy Cellar",
+    "Laughter Lounge",
+    "Sidewalk Stand-Up",
+    "The Giggle Garage",
+    "Main Street Theater",
+    "Sunset Pavilion",
+    "The Comedy Cafe",
+    "Corner Stage",
+    "Urban Humor Hub",
+    "Midtown Spotlight",
+    "Rooftop Routines",
+    "Suburban Stand-Up",
+    "The Joke Joint",
+    "Comedy Castle",
+    "The Punchline Pub",
+    "The Grand Stage"
   ]
   const dummyEvents = sampleNames.map((title, i) => {
     const month = (i % 12) + 1
-    const dateString = `2025-${month.toString().padStart(2, '0')}-15`
+    const day = 15 + (i % 5)
+    const dateString = `2025-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+    const timeOptions = ["7:30 PM", "8:00 PM", "8:30 PM"]
+    const time = timeOptions[i % 3]
     return {
       id: i + 1,
       title,
       date: dateString,
-      location: `Venue ${i + 1}`,
-      time: `${8 + (i % 5)}:00 PM`,
+      location: sampleLocations[i],
+      time,
       link: '#',
-      description: `Join us for ${title}, an event filled with excitement and laughter that will leave you wanting more.`
+      description: `Join us for ${title} at ${sampleLocations[i]}. Enjoy a night of electrifying comedy with top performers and an unforgettable atmosphere.`
     }
   })
   const [visibleCount, setVisibleCount] = useState(4)
@@ -67,15 +92,14 @@ export default function EventsSection({ id }: { id: string }) {
   }
   return (
     <Box id={id} sx={{ p: 8, backgroundColor: 'transparent' }}>
-    <Typography 
-      variant="h2" 
-      align="center" 
-      gutterBottom 
-      sx={{ color: theme.palette.mode === 'light' ? 'black' : 'inherit' }}
-    >
-      Upcoming Events
-    </Typography>
-
+      <Typography 
+        variant="h2" 
+        align="center" 
+        gutterBottom 
+        sx={{ color: theme.palette.mode === 'light' ? 'black' : 'inherit' }}
+      >
+        Upcoming Events
+      </Typography>
       <motion.div variants={containerVariants} initial="hidden" animate="visible">
         <Grid container spacing={4} justifyContent="center">
           <AnimatePresence>
