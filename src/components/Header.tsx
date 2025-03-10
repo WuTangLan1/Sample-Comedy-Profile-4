@@ -1,4 +1,6 @@
-import { AppBar, Toolbar, Typography, Container, IconButton, Button } from '@mui/material'
+// src\components\Header.tsx
+
+import { AppBar, Toolbar, Typography, Container, IconButton, Button, Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import { Box } from '@mui/system'
 import { useColorMode } from '../theme/ThemeConfig'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
@@ -6,15 +8,17 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
+import MenuIcon from '@mui/icons-material/Menu'
 import { styled } from '@mui/system'
 import { OverridableComponent } from '@mui/material/OverridableComponent'
 import { IconButtonTypeMap } from '@mui/material/IconButton/IconButton'
+import { useState } from 'react'
+import { useTheme as useMuiTheme } from '@mui/material/styles'
 
 interface HeaderProps {
   activeSection: string
   handleNavigation: (section: string) => void
 }
-
 
 const NavLink = styled(Button)(({ theme }) => ({
   margin: '0 1rem',
@@ -46,6 +50,29 @@ const SocialIcon = styled(IconButton)(({ theme }) => ({
 export default function Header({ activeSection, handleNavigation }: HeaderProps) {
   const { mode, toggleColorMode } = useColorMode()
   const pages = ['Events', 'About', 'Media', 'Shop']
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const muiTheme = useMuiTheme()
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen)
+  }
+
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Typography variant="h6" sx={{ my: 2, fontWeight: 700, background: mode === 'light' ? 'linear-gradient(45deg, #1976d2 30%, #2196f3 90%)' : 'linear-gradient(45deg, #bb86fc 30%, #3700b3 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        Citizen Kane
+      </Typography>
+      <List>
+        {pages.map((page) => (
+          <ListItem key={page} disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleNavigation(page)}>
+              <ListItemText primary={page} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  )
 
   return (
     <AppBar position="sticky" sx={{ 
@@ -55,11 +82,21 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ alignItems: 'center', display: { xs: 'none', md: 'block' } }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
             <img
               src="/images/personal/profile1.png"
               alt="logo"
               style={{ 
+                display: { xs: 'none', md: 'block' },
                 width: 56, 
                 height: 56, 
                 marginRight: '1.5rem', 
@@ -78,8 +115,7 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               Citizen Kane
             </Typography>
           </Box>
-          
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
             {pages.map((page) => (
               <NavLink
                 key={page}
@@ -95,7 +131,6 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
               </NavLink>
             ))}
           </Box>
-
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <SocialIcon 
               component="a"
@@ -121,7 +156,6 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
             >
               <YouTubeIcon sx={{ color: mode === 'light' ? '#FF0000' : '#ffffff' }} />
             </SocialIcon>
-            
             <IconButton 
               onClick={toggleColorMode} 
               sx={{ 
@@ -141,6 +175,20 @@ export default function Header({ activeSection, handleNavigation }: HeaderProps)
           </Box>
         </Toolbar>
       </Container>
+      <Box component="nav">
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{ keepMounted: true }}
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: muiTheme.spacing(30) }
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
     </AppBar>
   )
 }
