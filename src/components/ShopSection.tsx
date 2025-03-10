@@ -3,14 +3,16 @@ import React from 'react'
 import { Box, Typography, Card, CardContent, CardMedia, Button, Chip, useTheme, styled, keyframes } from '@mui/material'
 
 const scrollReverse = keyframes({
-  '0%': { transform: 'translateX(-50%)' },
+  '0%': { transform: 'translateX(-100%)' },
   '100%': { transform: 'translateX(0)' }
 })
 
 const ScrollingWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   whiteSpace: 'nowrap',
-  animation: `${scrollReverse} 30s linear infinite`,
+  animation: `${scrollReverse} 40s linear infinite`,
+  willChange: 'transform',
+  backfaceVisibility: 'hidden',
   '&:hover': {
     animationPlayState: 'paused'
   }
@@ -32,15 +34,36 @@ export default function ShopSection({ id }: { id: string }) {
   const repeatedProducts = [...dummyProducts, ...dummyProducts]
   return (
     <Box id={id} sx={{ p: 8 }}>
-      <Typography variant="h2" align="center" gutterBottom sx={{ 
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        textShadow: '0 4px 6px rgba(0,0,0,0.1)'
-      }}>
-        Shop
+      <Typography 
+        variant="h2" 
+        align="center" 
+        gutterBottom 
+        sx={{ color: theme.palette.mode === 'light' ? 'black' : 'inherit' }}
+      >
+        Some of my Merch
       </Typography>
-      <Box sx={{ overflow: 'hidden', width: '100%', position: 'relative', px: 4 }}>
+      <Box sx={{ 
+        overflow: 'hidden',
+        width: '100%',
+        position: 'relative',
+        px: 4,
+        '&::before, &::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          width: '100px',
+          zIndex: 2,
+          background: `linear-gradient(to ${theme.direction === 'rtl' ? 'left' : 'right'}, 
+            ${theme.palette.background.default} 20%, transparent)`
+        },
+        '&::before': { left: 0 },
+        '&::after': { 
+          right: 0,
+          background: `linear-gradient(to ${theme.direction === 'rtl' ? 'right' : 'left'}, 
+            ${theme.palette.background.default} 20%, transparent)`
+        }
+      }}>
         <ScrollingWrapper sx={{ width: '200%' }}>
           {repeatedProducts.map((product, index) => (
             <Box
@@ -48,6 +71,7 @@ export default function ShopSection({ id }: { id: string }) {
               sx={{
                 display: 'inline-block',
                 width: { xs: '280px', sm: '320px', md: '360px' },
+                height: { xs: '460px', sm: '500px', md: '540px' },
                 mx: 1,
                 verticalAlign: 'top'
               }}
@@ -123,7 +147,8 @@ export default function ShopSection({ id }: { id: string }) {
                 <CardContent sx={{ 
                   position: 'relative',
                   zIndex: 3,
-                  flexGrow: 1
+                  flexGrow: 1,
+                  overflow: 'hidden'
                 }}>
                   <Typography variant="h5" gutterBottom sx={{ 
                     fontWeight: 700,
