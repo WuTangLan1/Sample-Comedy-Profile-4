@@ -1,5 +1,5 @@
 // src/theme/ThemeConfig.tsx
-import React, { ReactNode, createContext, useState, useMemo, useContext } from 'react'
+import React, { ReactNode, createContext, useState, useMemo, useContext, useEffect } from 'react'
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
 
 const ColorModeContext = createContext({
@@ -219,7 +219,14 @@ export default function ThemeConfig({ children }: ThemeConfigProps) {
       setMode((prev) => (prev === 'light' ? 'dark' : 'light'))
     }
   }), [mode])
+  useEffect(() => {
+    const bg = mode === 'light'
+      ? "url('/images/backgrounds/appLight.svg')"
+      : "url('/images/backgrounds/appDark.svg')";
+    document.body.style.setProperty('--app-background', bg);
+  }, [mode]);
   const theme = mode === 'light' ? lightTheme : darkTheme
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

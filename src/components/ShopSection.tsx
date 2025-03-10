@@ -31,7 +31,7 @@ export default function ShopSection({ id }: { id: string }) {
   ]
   const repeatedProducts = [...dummyProducts, ...dummyProducts]
   return (
-    <Box id={id} sx={{ p: 8, backgroundColor: 'background.paper' }}>
+    <Box id={id} sx={{ p: 8 }}>
       <Typography variant="h2" align="center" gutterBottom sx={{ 
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         WebkitBackgroundClip: 'text',

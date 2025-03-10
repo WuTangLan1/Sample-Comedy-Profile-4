@@ -22,7 +22,7 @@ const ScrollingWrapper = styled(Box)({
 
 export default function MediaSection({ id }: { id: string }) {
   return (
-    <Box id={id} sx={{ p: 8, backgroundColor: 'background.paper' }}>
+    <Box id={id} sx={{ p: 8 }}>
       <Typography variant="h2" align="center" gutterBottom>
         Media
       </Typography>
