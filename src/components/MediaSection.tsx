@@ -30,19 +30,20 @@ export default function MediaSection({ id }: { id: string }) {
         <ScrollingWrapper sx={{ width: '200%' }}>
         {repeatedImages.map((image, index) => (
           <Box
-            key={`${image.id}-${index}`}
-            sx={{
-              display: 'inline-block',
-              width: { xs: '200px', sm: '250px', md: '300px' },
-              mx: 1
-            }}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-            />
-          </Box>
+  key={`${image.id}-${index}`}
+  sx={{
+    display: 'inline-block',
+    width: '300px',
+    mx: 1
+  }}
+>
+  <img
+    src={image.src}
+    alt={image.alt}
+    style={{ width: '100%', height: 'auto', display: 'block' }}
+  />
+</Box>
+
         ))}
         </ScrollingWrapper>
       </Box>
